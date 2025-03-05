@@ -1,0 +1,161 @@
+[gd_scene load_steps=15 format=3 uid="uid://durhes43gex7a"]
+
+[ext_resource type="PackedScene" uid="uid://c7bfiw54rvaq2" path="res://scenes/player_melodie.tscn" id="1_cl1wt"]
+[ext_resource type="Script" path="res://scenes/room.gd" id="1_jh83c"]
+[ext_resource type="AudioStream" uid="uid://qyacm71epyhi" path="res://ressources/sons/idle_theme.wav" id="2_8nbnd"]
+[ext_resource type="Texture2D" uid="uid://ky4e7158gqf6" path="res://ressources/images/cgj_default_tile.svg" id="2_torsx"]
+[ext_resource type="PackedScene" uid="uid://cyvqa6g64cw37" path="res://scenes/enemies/slime.tscn" id="3_04ip2"]
+[ext_resource type="Texture2D" uid="uid://bge3nllk1bq5r" path="res://ressources/images/mur.svg" id="3_oi2tl"]
+[ext_resource type="Texture2D" uid="uid://dhva3tivsvknl" path="res://ressources/images/mur_coin.svg" id="4_6a3f6"]
+[ext_resource type="PackedScene" uid="uid://di4chlep1t1or" path="res://parametres/menu_parametres.tscn" id="6_6ubhx"]
+[ext_resource type="PackedScene" uid="uid://cnd2a1x1smulq" path="res://scenes/interface.tscn" id="8_5s7tf"]
+[ext_resource type="PackedScene" uid="uid://ctgxrbcg2vu1p" path="res://scenes/ecran_mort.tscn" id="10_3ou8w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1c4te"]
+normal = Vector2(0, 1)
+distance = -328.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qq3vn"]
+distance = -314.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e1nqi"]
+normal = Vector2(-1, 0)
+distance = -592.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ia1hi"]
+normal = Vector2(1, 0)
+distance = -596.0
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_jh83c")
+
+[node name="Musique" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("2_8nbnd")
+autoplay = true
+bus = &"Music"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -638.0
+offset_top = -360.0
+offset_right = 642.0
+offset_bottom = 360.0
+texture = ExtResource("2_torsx")
+stretch_mode = 1
+
+[node name="Player_Melodie" parent="." instance=ExtResource("1_cl1wt")]
+scale = Vector2(3, 3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["World_Border"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="World Border Up" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_1c4te")
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D/World Border Up"]
+offset_left = -640.0
+offset_top = -392.0
+offset_right = 640.0
+offset_bottom = -328.0
+texture = ExtResource("3_oi2tl")
+stretch_mode = 1
+
+[node name="World Border Down" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_qq3vn")
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D/World Border Down"]
+offset_left = 622.0
+offset_top = 379.0
+offset_right = 1902.0
+offset_bottom = 443.0
+rotation = 3.14159
+texture = ExtResource("3_oi2tl")
+stretch_mode = 1
+
+[node name="World Border Right" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_e1nqi")
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D/World Border Right"]
+offset_left = -659.0
+offset_top = 374.0
+offset_right = 61.0
+offset_bottom = 438.0
+rotation = -1.5708
+texture = ExtResource("3_oi2tl")
+stretch_mode = 1
+
+[node name="World Border Left" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ia1hi")
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D/World Border Left"]
+offset_left = 658.0
+offset_top = -355.0
+offset_right = 1378.0
+offset_bottom = -291.0
+rotation = 1.5708
+texture = ExtResource("3_oi2tl")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody2D"]
+offset_left = -659.0
+offset_top = -392.0
+offset_right = -595.0
+offset_bottom = -328.0
+texture = ExtResource("4_6a3f6")
+
+[node name="TextureRect2" type="TextureRect" parent="StaticBody2D"]
+offset_left = -659.0
+offset_top = 379.0
+offset_right = -595.0
+offset_bottom = 443.0
+rotation = -1.5708
+texture = ExtResource("4_6a3f6")
+
+[node name="TextureRect3" type="TextureRect" parent="StaticBody2D"]
+offset_left = 658.0
+offset_top = 379.0
+offset_right = 722.0
+offset_bottom = 443.0
+rotation = 3.14159
+texture = ExtResource("4_6a3f6")
+
+[node name="TextureRect4" type="TextureRect" parent="StaticBody2D"]
+offset_left = 658.0
+offset_top = -392.0
+offset_right = 722.0
+offset_bottom = -328.0
+rotation = 1.5708
+texture = ExtResource("4_6a3f6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+
+[node name="Slime" parent="." groups=["Enemies"] instance=ExtResource("3_04ip2")]
+position = Vector2(-448, 205)
+
+[node name="Interface" parent="." instance=ExtResource("8_5s7tf")]
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+
+[node name="Menu_parametres" parent="." instance=ExtResource("6_6ubhx")]
+process_mode = 3
+visible = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Ecran mort" parent="." instance=ExtResource("10_3ou8w")]
+process_mode = 3
+visible = false
+offset_left = -258.0
+offset_top = -383.0
+offset_right = -258.0
+offset_bottom = -383.0
+
+[connection signal="finished" from="Musique" to="." method="_on_audio_stream_player_finished"]
+[connection signal="retour_menu" from="Ecran mort" to="." method="_on_ecran_mort_retour_menu"]

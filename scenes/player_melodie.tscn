@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7bfiw54rvaq2"]
+
+[ext_resource type="Script" path="res://scripts/player_control.gd" id="1_7sg4g"]
+[ext_resource type="Texture2D" uid="uid://uebyv8y862vt" path="res://ressources/images/melodie.svg" id="2_se13h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wgkyh"]
+radius = 6.0
+height = 32.0
+
+[node name="Player_Melodie" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_7sg4g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_se13h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wgkyh")

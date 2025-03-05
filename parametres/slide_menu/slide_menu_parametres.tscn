@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://dah5m6qsf1fdr"]
+
+[ext_resource type="Script" path="res://parametres/slide_menu/slide_menu_parametres.gd" id="1_q83rq"]
+[ext_resource type="FontFile" uid="uid://dbe1teksyhymq" path="res://ressources/fonts/OpenDyslexic-Regular.otf" id="2_ra1il"]
+
+[node name="slide_menu_parametres" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -375.0
+offset_bottom = -594.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_q83rq")
+bus_name = "Master"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 42
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Nom_Audio" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ra1il")
+theme_override_font_sizes/font_size = 32
+text = "TEXTE_PAR_DEFAUT
+"
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Valeur_Audio" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ra1il")
+theme_override_font_sizes/font_size = 32
+text = "100 %
+"
+
+[node name="VSeparator4" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3

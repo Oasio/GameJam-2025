@@ -1,0 +1,200 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0ulsovtj84go"]
+
+[ext_resource type="PackedScene" uid="uid://bql1rrrswwr0y" path="res://parametres/drop_menu/drop_menu_fenetre.tscn" id="1_josna"]
+[ext_resource type="FontFile" uid="uid://dbe1teksyhymq" path="res://ressources/fonts/OpenDyslexic-Regular.otf" id="1_ls7jb"]
+[ext_resource type="PackedScene" uid="uid://d30k33gvnoo46" path="res://parametres/drop_menu/drop_menu_resolution.tscn" id="2_ar3u0"]
+[ext_resource type="PackedScene" uid="uid://dah5m6qsf1fdr" path="res://parametres/slide_menu/slide_menu_parametres.tscn" id="3_4tew8"]
+[ext_resource type="PackedScene" uid="uid://n5vmjs3xhmma" path="res://parametres/assign_menu/assigner_bouton.tscn" id="4_chw0c"]
+
+[sub_resource type="GDScript" id="GDScript_nexub"]
+script/source = "extends Control
+
+@onready var commandes = $TabContainer/Commandes
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_commandes_tab_changed(tab):
+		commandes.MarginContainer.ScrollContainer.VBoxContainer.assigner_bouton6.set_process_unhandled_key_input(false)
+		commandes.MarginContainer.ScrollContainer.VBoxContainer.assigner_bouton2.set_process_unhandled_key_input(false)
+		commandes.MarginContainer.ScrollContainer.VBoxContainer.assigner_bouton3.set_process_unhandled_key_input(false)
+		commandes.MarginContainer.ScrollContainer.VBoxContainer.assigner_bouton4.set_process_unhandled_key_input(false)
+		commandes.MarginContainer.ScrollContainer.VBoxContainer.assigner_bouton5.set_process_unhandled_key_input(false)
+"
+
+[node name="Tab_Parametres" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_nexub")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ls7jb")
+tab_alignment = 1
+current_tab = 0
+
+[node name="Affichage" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ls7jb")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Affichage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Affichage/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TabContainer/Affichage/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Affichage/MarginContainer/ScrollContainer/VBoxContainer2"]
+modulate = Color(0.105882, 0.105882, 0.105882, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Drop_Menu_Parametres_Feunetre" parent="TabContainer/Affichage/MarginContainer/ScrollContainer/VBoxContainer2" instance=ExtResource("1_josna")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="Drop_Menu_Resolution" parent="TabContainer/Affichage/MarginContainer/ScrollContainer/VBoxContainer2" instance=ExtResource("2_ar3u0")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="Son" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ls7jb")
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Son"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Son/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Son/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Son/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ls7jb")
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="slide_menu_parametres" parent="TabContainer/Son/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_4tew8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="slide_menu_parametres2" parent="TabContainer/Son/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_4tew8")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="slide_menu_parametres3" parent="TabContainer/Son/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_4tew8")]
+layout_mode = 2
+bus_name = "Sfx"
+
+[node name="Commandes" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ls7jb")
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Commandes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Commandes/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Commandes/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="assigner_bouton4" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_chw0c")]
+layout_mode = 2
+
+[node name="assigner_bouton3" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_chw0c")]
+layout_mode = 2
+nom_action = "BOUGER_BAS"
+
+[node name="assigner_bouton5" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_chw0c")]
+layout_mode = 2
+nom_action = "BOUGER_DROITE"
+
+[node name="assigner_bouton6" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_chw0c")]
+layout_mode = 2
+nom_action = "BOUGER_GAUCHE"
+
+[node name="assigner_bouton2" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_chw0c")]
+layout_mode = 2
+nom_action = "PAUSE"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Commandes/MarginContainer/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[connection signal="tab_changed" from="TabContainer/Commandes" to="." method="_on_commandes_tab_changed"]
