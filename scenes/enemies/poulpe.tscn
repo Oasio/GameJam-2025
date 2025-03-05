@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://voiqrkjd02om"]
+
+[ext_resource type="Script" path="res://scenes/enemies/poulpe.gd" id="1_hu6wh"]
+[ext_resource type="Texture2D" uid="uid://2spn60rmdyy5" path="res://ressources/images/poulpe-1.png" id="1_lgwa7"]
+[ext_resource type="Texture2D" uid="uid://b4ukmsspx16f" path="res://ressources/images/poulpe-2.png" id="2_5x4i5"]
+[ext_resource type="Texture2D" uid="uid://dinxaox0ug7kx" path="res://ressources/images/poulpe-atk.png" id="2_ketov"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hq77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ketov")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lgwa7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5x4i5")
+}],
+"loop": true,
+"name": &"Generic",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7foh"]
+radius = 38.2753
+
+[node name="Poulpe" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_hu6wh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_2hq77")
+animation = &"Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s7foh")

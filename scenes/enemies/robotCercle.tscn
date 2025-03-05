@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bevw5uqw42vfh"]
+
+[ext_resource type="Script" path="res://scenes/enemies/robot_cercle.gd" id="1_3gn1u"]
+[ext_resource type="Texture2D" uid="uid://b5ui24x0341jh" path="res://ressources/images/roby-cercle.png" id="2_j4tla"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6j0u0"]
+radius = 96.8762
+
+[node name="Robotcercle" type="Area2D"]
+script = ExtResource("1_3gn1u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j4tla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6j0u0")
+
+[connection signal="body_entered" from="." to="." method="Collision"]

@@ -1,0 +1,12 @@
+res://menu_principal/menu_principal_affichage.tscn
+res://scenes/enemies/slime.tscn
+res://scenes/attaques/Balle.tscn
+res://scenes/player_melodie.tscn
+res://scenes/interface.tscn
+res://scenes/attaques/Bombes.tscn
+res://scenes/ecran_mort.tscn
+res://scenes/enemies/robot.tscn
+res://scenes/enemies/robotCercle.tscn
+res://scenes/attaques/FusilPompe.tscn
+res://scenes/enemies/poulpe.tscn
+res://scenes/Room.tscn

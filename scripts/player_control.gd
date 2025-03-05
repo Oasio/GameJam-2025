@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var interface : Control
+
 const move_speed = 400
 const acceleration = 0.25
 const max_boost_speed = 800
@@ -19,19 +21,24 @@ var flute_cooldown = 0.5
 var tambour_cooldown = 3.0
 var lyre_cooldown = 1
 
-var slot = [null, null]
+var instrument_list = [
+	"",
+	""
+]
+
+var vie = 10
 
 func _ready() -> void:
 	flute = load("res://scripts/Instrument/Flute.gd").new()
 	flute.set_scene_parent(get_tree().get_root())
-	slot.append(flute)
 	
 	tambour = load("res://scripts/Instrument/Tambour.gd").new()
 	tambour.set_scene_parent(get_tree().get_root())
 	
 	lyre = load("res://scripts/Instrument/Lyre.gd").new()
 	lyre.set_scene_parent(get_tree().get_root())
-	slot.append(lyre)
+
+
 	
 
 func _physics_process(delta: float) -> void:
@@ -98,4 +105,7 @@ func _process(delta: float) -> void:
 		lyre.jouer_melodie(position, direction_balle, angle_lyre)
 		lyre_timer = lyre_cooldown
 			
-	
+
+func take_damage(dmg : int) :
+	vie -= dmg
+	interface.set_life(vie)

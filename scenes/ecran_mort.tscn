@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctgxrbcg2vu1p"]
+
+[ext_resource type="Texture2D" uid="uid://j8hopa3c7fr3" path="res://ressources/images/icone_mort.svg" id="1_ekgu8"]
+[ext_resource type="Script" path="res://scenes/ecran_mort.gd" id="1_k44wh"]
+[ext_resource type="FontFile" uid="uid://dbe1teksyhymq" path="res://ressources/fonts/OpenDyslexic-Regular.otf" id="2_usedy"]
+[ext_resource type="Texture2D" uid="uid://dqfrqntx73do5" path="res://ressources/images/menu_jeu_button.svg" id="3_ecfx2"]
+[ext_resource type="Texture2D" uid="uid://kpss4kt07w8l" path="res://ressources/images/menu_jeu_button_survole.svg" id="4_jv24w"]
+
+[node name="Control2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k44wh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("1_ekgu8")
+expand_mode = 1
+
+[node name="Mort" type="Label" parent="HBoxContainer/VBoxContainer/TextureRect"]
+modulate = Color(0.917647, 0.941176, 0.847059, 1)
+self_modulate = Color(0.917647, 0.941176, 0.847059, 1)
+layout_mode = 0
+offset_left = 89.0
+offset_top = 187.0
+offset_right = 414.0
+offset_bottom = 315.0
+theme_override_fonts/font = ExtResource("2_usedy")
+theme_override_font_sizes/font_size = 32
+text = "Vous êtes
+mort"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "fr_FR"
+
+[node name="main_menu_button" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+texture_normal = ExtResource("3_ecfx2")
+texture_pressed = ExtResource("4_jv24w")
+texture_hover = ExtResource("4_jv24w")
+texture_disabled = ExtResource("4_jv24w")
+texture_focused = ExtResource("4_jv24w")
+stretch_mode = 0
+
+[node name="main_menu_label" type="Label" parent="HBoxContainer/VBoxContainer/main_menu_button"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 89.0
+offset_top = 62.0
+offset_right = 414.0
+offset_bottom = 190.0
+theme_override_fonts/font = ExtResource("2_usedy")
+theme_override_font_sizes/font_size = 32
+text = "Menu Principal"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "fr_FR"
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/main_menu_button" to="." method="_on_main_menu_button_pressed"]

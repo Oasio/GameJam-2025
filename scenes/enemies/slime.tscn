@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyvqa6g64cw37"]
+
+[ext_resource type="Script" path="res://scenes/enemies/slime.gd" id="1_hnufy"]
+[ext_resource type="Texture2D" uid="uid://c85d5krtd4nks" path="res://ressources/images/blob-1.png" id="2_f4wf2"]
+[ext_resource type="Texture2D" uid="uid://c0b6d7551nbcm" path="res://ressources/images/blob-2-4.png" id="3_dyq42"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfla8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f4wf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dyq42")
+}],
+"loop": false,
+"name": &"Generic",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bokrm"]
+radius = 20.0
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_hnufy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_qfla8")
+animation = &"Generic"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bokrm")

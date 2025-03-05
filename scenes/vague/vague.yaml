@@ -1,0 +1,22 @@
+vagues:
+  - {slime: 1, poulpe: 0, robot: 0}
+  - {slime: 1, poulpe: 1, robot: 0}
+  - {slime: 2, poulpe: 1, robot: 0}
+  - {slime: 2, poulpe: 2, robot: 1}
+  - {slime: 3, poulpe: 2, robot: 1}
+  - {slime: 3, poulpe: 3, robot: 2}
+  - {slime: 4, poulpe: 3, robot: 2}
+  - {slime: 4, poulpe: 4, robot: 3}
+  - {slime: 5, poulpe: 4, robot: 3}
+  - {slime: 5, poulpe: 5, robot: 4}
+  - {slime: 3, poulpe: 2, robot: 2}
+  - {slime: 2, poulpe: 3, robot: 1}
+  - {slime: 4, poulpe: 1, robot: 3}
+  - {slime: 1, poulpe: 4, robot: 2}
+  - {slime: 2, poulpe: 2, robot: 3}
+  - {slime: 5, poulpe: 1, robot: 1}
+  - {slime: 1, poulpe: 3, robot: 4}
+  - {slime: 3, poulpe: 4, robot: 1}
+  - {slime: 4, poulpe: 3, robot: 2}
+  - {slime: 2, poulpe: 1, robot: 4}
+  - {slime: 5, poulpe: 3, robot: 2}

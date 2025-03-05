@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://scenes/room.gd" id="1_jh83c"]
 [ext_resource type="AudioStream" uid="uid://qyacm71epyhi" path="res://ressources/sons/idle_theme.wav" id="2_8nbnd"]
 [ext_resource type="Texture2D" uid="uid://ky4e7158gqf6" path="res://ressources/images/cgj_default_tile.svg" id="2_torsx"]
-[ext_resource type="PackedScene" uid="uid://cyvqa6g64cw37" path="res://scenes/enemies/slime.tscn" id="3_04ip2"]
 [ext_resource type="Texture2D" uid="uid://bge3nllk1bq5r" path="res://ressources/images/mur.svg" id="3_oi2tl"]
 [ext_resource type="Texture2D" uid="uid://dhva3tivsvknl" path="res://ressources/images/mur_coin.svg" id="4_6a3f6"]
 [ext_resource type="PackedScene" uid="uid://di4chlep1t1or" path="res://parametres/menu_parametres.tscn" id="6_6ubhx"]
-[ext_resource type="PackedScene" uid="uid://cnd2a1x1smulq" path="res://scenes/interface.tscn" id="8_5s7tf"]
+[ext_resource type="PackedScene" uid="uid://bndtclt51nsih" path="res://scenes/interface.tscn" id="8_5s7tf"]
 [ext_resource type="PackedScene" uid="uid://ctgxrbcg2vu1p" path="res://scenes/ecran_mort.tscn" id="10_3ou8w"]
+[ext_resource type="Script" path="res://scenes/vague.gd" id="12_n6lb5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1c4te"]
 normal = Vector2(0, 1)
@@ -42,9 +42,6 @@ offset_right = 642.0
 offset_bottom = 360.0
 texture = ExtResource("2_torsx")
 stretch_mode = 1
-
-[node name="Player_Melodie" parent="." instance=ExtResource("1_cl1wt")]
-scale = Vector2(3, 3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["World_Border"]]
 collision_layer = 3
@@ -132,9 +129,6 @@ texture = ExtResource("4_6a3f6")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
 
-[node name="Slime" parent="." groups=["Enemies"] instance=ExtResource("3_04ip2")]
-position = Vector2(-448, 205)
-
 [node name="Interface" parent="." instance=ExtResource("8_5s7tf")]
 offset_left = -640.0
 offset_top = -360.0
@@ -157,5 +151,31 @@ offset_top = -383.0
 offset_right = -258.0
 offset_bottom = -383.0
 
+[node name="vague" type="Node2D" parent="." node_paths=PackedStringArray("spawner1", "spawner2", "spawner3", "spawner4")]
+script = ExtResource("12_n6lb5")
+spawner1 = NodePath("Spawner1")
+spawner2 = NodePath("Spawner2")
+spawner3 = NodePath("Spawner3")
+spawner4 = NodePath("Spawner4")
+
+[node name="Spawner1" type="Node2D" parent="vague"]
+position = Vector2(482, -232)
+
+[node name="Spawner2" type="Node2D" parent="vague"]
+position = Vector2(-538, 238)
+
+[node name="Spawner3" type="Node2D" parent="vague"]
+position = Vector2(-502, -240)
+
+[node name="Spawner4" type="Node2D" parent="vague"]
+position = Vector2(484, 220)
+
+[node name="Timer" type="Timer" parent="vague"]
+
+[node name="Player_Melodie" parent="vague" node_paths=PackedStringArray("interface") instance=ExtResource("1_cl1wt")]
+scale = Vector2(3, 3)
+interface = NodePath("../../Interface")
+
 [connection signal="finished" from="Musique" to="." method="_on_audio_stream_player_finished"]
 [connection signal="retour_menu" from="Ecran mort" to="." method="_on_ecran_mort_retour_menu"]
+[connection signal="timeout" from="vague/Timer" to="vague" method="_on_timer_timeout"]

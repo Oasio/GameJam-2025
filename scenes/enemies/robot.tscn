@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://cm5spgl8o4fam"]
+
+[ext_resource type="Texture2D" uid="uid://dwwe0eanmrcra" path="res://ressources/images/roby-idle-0.png" id="1_mo3hb"]
+[ext_resource type="Script" path="res://scenes/enemies/robot.gd" id="1_tikkk"]
+[ext_resource type="Texture2D" uid="uid://8m84oe4oes3u" path="res://ressources/images/roby-idle-1.png" id="2_4n77m"]
+[ext_resource type="Texture2D" uid="uid://dcyf6teijpttj" path="res://ressources/images/roby-idle-2.png" id="3_8bmqk"]
+[ext_resource type="Texture2D" uid="uid://duto5skmjixh6" path="res://ressources/images/roby-atk-0.png" id="5_muiti"]
+[ext_resource type="Texture2D" uid="uid://8xhcmbkyxlwb" path="res://ressources/images/roby-atk-1.png" id="6_otdac"]
+[ext_resource type="Texture2D" uid="uid://br8d144g0u2le" path="res://ressources/images/roby-atk-2.png" id="7_nsi5m"]
+[ext_resource type="Texture2D" uid="uid://cxvxfwv2nii64" path="res://ressources/images/roby-atk-3.png" id="8_tsp5e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vaeha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_otdac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nsi5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tsp5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_mo3hb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4n77m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8bmqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_muiti")
+}],
+"loop": true,
+"name": &"Generic",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utjf8"]
+size = Vector2(126, 185)
+
+[node name="Robot" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_tikkk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vaeha")
+animation = &"Generic"
+frame_progress = 0.260687
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 6.5)
+shape = SubResource("RectangleShape2D_utjf8")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfso5wd843777"]
+
+[ext_resource type="Script" path="res://scripts/Instrument/onde.gd" id="1_mly3m"]
+[ext_resource type="Texture2D" uid="uid://cb5xpbtagu6jv" path="res://ressources/images/ronde tambour.png.png" id="2_2cju6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q35ff"]
+radius = 109.018
+
+[node name="Onde" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_mly3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_2cju6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q35ff")
+
+[connection signal="body_entered" from="." to="." method="Collision"]
